@@ -63,6 +63,7 @@ public class MyList{
             this.Head = newNode;
         }
         
+        this.Length++;
     }
 
     public void Insert(int data, int index){
