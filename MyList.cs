@@ -53,6 +53,15 @@ public class MyList{
         //creates a node with the data passed and prepends the node passed to the beginning of the list. This node will now be the new head of the list.
         Node newNode = new Node(data);
 
+        if(this.Head == null){
+            //the list is empty
+            this.Head = newNode;
+       
+        }else{
+            //theres other elements in the list
+            newNode.Next = this.Head;
+            this.Head = newNode;
+        }
         
     }
 
