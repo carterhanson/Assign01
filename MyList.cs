@@ -56,7 +56,6 @@ public class MyList{
         if(this.Head == null){
             //the list is empty
             this.Head = newNode;
-       
         }else{
             //theres other elements in the list
             newNode.Next = this.Head;
@@ -69,21 +68,68 @@ public class MyList{
     public void Insert(int data, int index){
         //creates a node with the data passed and inserts the node to desired "index" in list with the head being considered index 0 for the count.
 
-        //Hint: if index == 0 or if index == this.Length-1, think of how we can reuse methods we already have written
+        //Hint: if index == 0 or if index == this.Length-1, think of how we can reuse methods 
+        //we already have written
         //in order to reduce what we write for this method.
+
+        Node newNode = new Node(data);
+
+        if (index == 0) {
+            // Inserting at the beginning of the list
+            newNode.Next = this.Head;
+            this.Head = newNode;
+        } else {
+            Node curNode = this.Head;
+            int curIndex = 0;
+            while (curNode != null && curIndex < index - 1) {
+                curNode = curNode.Next;
+                curIndex++;
+            }
+        if (curNode != null) {
+            // Inserting at the middle or end of the list
+            newNode.Next = curNode.Next;
+            curNode.Next = newNode;
+        } else {
+            // Index is out of bounds
+            throw new IndexOutOfRangeException();
+        }
+        }
+
+        this.Length++;
     }
 
     public Node? RemoveFromFront(){
-        //removes the head node from the list and returns node.
-        //the new head will be the next node in the list.
-        
-        return null;
+        //removes the head node from the list and returns node. the new head will be the next node in the list.
+        Node removedNode = this.Head;
+        if (this.Head != null) {
+            this.Head = this.Head.Next;
+            this.Length--;
+        }
+        return removedNode;
     }
 
     public Node? RemoveFromBack(){
         //removes the last node in the list and returns that node.
+        Node removedNode = null;
 
-        return null;
+        if (this.Head != null) {
+            if (this.Head.Next == null) {
+                // Only one node in the list
+                removedNode = this.Head;
+                this.Head = null;
+            } else {
+                // Two or more nodes in the list
+                Node curNode = this.Head;
+                while (curNode.Next.Next != null) {
+                    curNode = curNode.Next;
+                }
+                removedNode = curNode.Next;
+                curNode.Next = null;
+            }
+            this.Length--;
+        }
+        return removedNode;
+        
     }
 
 }
