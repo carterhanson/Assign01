@@ -20,7 +20,8 @@ public class MyList{
         //prints all values in the list starting from the head and traversing down to the tail
         Node curNode = this.Head;
         while(curNode != null){
-            Console.WriteLine(curNode.Data);
+            //Console.WriteLine(curNode.Data);
+            Console.WriteLine(curNode.Data + " --> ");
             curNode = curNode.Next;
         }
     }
@@ -89,10 +90,7 @@ public class MyList{
             // Inserting at the middle or end of the list
             newNode.Next = curNode.Next;
             curNode.Next = newNode;
-        } else {
-            // Index is out of bounds
-            throw new IndexOutOfRangeException();
-        }
+        } 
         }
 
         this.Length++;
